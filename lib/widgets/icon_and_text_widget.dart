@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/utils/colors.dart';
+import 'package:food_delivery_app/utils/dimensions.dart';
+import 'package:food_delivery_app/widgets/small_text.dart';
 
 class IconAndTextWidget extends StatelessWidget {
   final IconData icon;
@@ -14,7 +16,7 @@ class IconAndTextWidget extends StatelessWidget {
     required this.text,
     this.iconColor = AppColors.mainColor,
     this.textColor = AppColors.textColor,
-    this.iconSize,
+    this.iconSize = 0,
     this.textSize,
   });
 
@@ -25,16 +27,10 @@ class IconAndTextWidget extends StatelessWidget {
         Icon(
           icon,
           color: iconColor,
-          size: iconSize,
+          size: iconSize == 0 ? Dimensions.iconSize24 : iconSize,
         ),
-        const SizedBox(width: 5),
-        Text(
-          text,
-          style: TextStyle(
-            fontSize: textSize,
-            color: textColor,
-          ),
-        )
+        SizedBox(width: Dimensions.height5),
+        SmallText(text),
       ],
     );
   }

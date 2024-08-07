@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/home/food_page_body.dart';
+import 'package:food_delivery_app/pages/home/food_page_body.dart';
 import 'package:food_delivery_app/utils/colors.dart';
+import 'package:food_delivery_app/utils/dimensions.dart';
 import 'package:food_delivery_app/widgets/big_text.dart.dart';
 import 'package:food_delivery_app/widgets/small_text.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class MainFoodPage extends StatefulWidget {
   const MainFoodPage({super.key});
@@ -15,16 +15,19 @@ class MainFoodPage extends StatefulWidget {
 class _MainFoodPageState extends State<MainFoodPage> {
   @override
   Widget build(BuildContext context) {
+    print("current height is : ${MediaQuery.of(context).size.height}");
+    print("current width is : ${MediaQuery.of(context).size.width}");
     return Scaffold(
       body: Column(
         children: [
+          //app bar
           Container(
-            margin: const EdgeInsets.only(top: 45, bottom: 15),
-            padding: const EdgeInsets.only(left: 20, right: 20),
+            margin: EdgeInsets.only(top: Dimensions.height45, bottom: Dimensions.height15),
+            padding: EdgeInsets.only(left: Dimensions.height20, right: Dimensions.height20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Column(
+                Column(
                   children: [
                     BigText(
                       "Türkiye",
@@ -36,27 +39,33 @@ class _MainFoodPageState extends State<MainFoodPage> {
                         SmallText(
                           "Sakarya",
                         ),
-                        Icon(Icons.arrow_drop_down_rounded)
+                        const Icon(Icons.arrow_drop_down_rounded)
                       ],
                     )
                   ],
                 ),
                 Container(
-                  height: 45,
-                  width: 45,
+                  height: Dimensions.height45,
+                  width: Dimensions.height45,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(Dimensions.radius15),
                     color: AppColors.mainColor,
                   ),
-                  child: const Icon(
+                  child: Icon(
                     Icons.search,
                     color: Colors.white,
+                    size: Dimensions.iconSize24,
                   ),
                 ),
               ],
             ),
           ),
-          const FoodPageBody(),
+
+          Expanded(
+            child: SingleChildScrollView(
+              child: const FoodPageBody(),
+            ),
+          ),
         ],
       ),
     );

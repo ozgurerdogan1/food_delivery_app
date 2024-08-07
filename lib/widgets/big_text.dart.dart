@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_app/utils/colors.dart';
+import 'package:food_delivery_app/utils/dimensions.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class BigText extends StatelessWidget {
-  final Color? color;
-  final String text;
-  final double? size;
-  final TextOverflow textOverFlow;
-  const BigText(
+  BigText(
     this.text, {
     super.key,
+    this.size = 0,
     this.color = AppColors.mainBlackColor,
     this.textOverFlow = TextOverflow.ellipsis,
-    this.size = 20,
   });
+
+  final Color? color;
+  final String text;
+  double? size;
+  final TextOverflow textOverFlow;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,7 @@ class BigText extends StatelessWidget {
         overflow: textOverFlow,
         style: GoogleFonts.roboto(
           textStyle: TextStyle(
-            fontSize: size,
+            fontSize: size == 0 ? Dimensions.bigTextHeight : size,
             color: color,
             fontWeight: FontWeight.w400,
           ),
