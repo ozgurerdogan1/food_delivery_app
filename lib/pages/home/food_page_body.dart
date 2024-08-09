@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_app/utils/colors.dart';
 import 'package:food_delivery_app/utils/dimensions.dart';
+import 'package:food_delivery_app/widgets/app_column.dart';
 import 'package:food_delivery_app/widgets/big_text.dart.dart';
 import 'package:food_delivery_app/widgets/icon_and_text_widget.dart';
 import 'package:food_delivery_app/widgets/small_text.dart';
@@ -27,8 +28,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
   @override
   void initState() {
-    print("dimension.pageViewContainer: ${Dimensions.pageViewContainer}");
-    print("dimension.textcontainer: ${Dimensions.pageViewTextContainer}");
+    debugPrint("dimension.pageViewContainer: ${Dimensions.pageViewContainer}");
+    debugPrint("dimension.textcontainer: ${Dimensions.pageViewTextContainer}");
 
     _pageController = PageController(viewportFraction: _scaleFactor);
     _pageController.addListener(() {
@@ -93,7 +94,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           ),
         ),
         ListView.builder(
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemCount: 30,
           itemBuilder: (context, index) {
@@ -195,7 +196,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
       matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currHeight, 0);
     } else {
-      print("else");
+      debugPrint("else");
       double currHeight = currHeightCalc(index, _currentPageValue, _scaleFactor, containerHeight);
       double currScale = _scaleFactor - (1 - scaleRatioY);
       matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currHeight, 0);
@@ -241,52 +242,14 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     ),
                   ]),
               child: Container(
-                width: double.infinity,
-                alignment: Alignment.center,
-                padding: EdgeInsets.only(
-                    top: Dimensions.height15,
-                    left: Dimensions.height15,
-                    right: Dimensions.height15,
-                    bottom: Dimensions.height15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    BigText("Kremalı Kek"),
-                    SizedBox(height: Dimensions.height10),
-                    Row(
-                      children: [
-                        Wrap(
-                          children: List.generate(
-                              5,
-                              (index) => Icon(
-                                    Icons.star,
-                                    color: AppColors.mainColor,
-                                    size: Dimensions.height15,
-                                  )),
-                        ),
-                        SizedBox(width: Dimensions.height10),
-                        SmallText("4.5"),
-                        SizedBox(width: Dimensions.height10),
-                        SmallText("1287"),
-                        SizedBox(width: Dimensions.height10),
-                        SmallText("comments")
-                      ],
-                    ),
-                    SizedBox(height: Dimensions.height20),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconAndTextWidget(icon: Icons.circle, iconColor: AppColors.iconColor1, text: "Normal"),
-                        IconAndTextWidget(icon: Icons.location_on, iconColor: AppColors.mainColor, text: "1.7km"),
-                        IconAndTextWidget(
-                            icon: Icons.access_time_rounded, iconColor: AppColors.iconColor2, text: "Normal"),
-                      ],
-                    )
-                  ],
-                ),
-              ),
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.only(
+                      top: Dimensions.height15,
+                      left: Dimensions.height15,
+                      right: Dimensions.height15,
+                      bottom: Dimensions.height15),
+                  child: const AppColumn(text: "Baklava Spacial")),
             ),
           ),
         ],

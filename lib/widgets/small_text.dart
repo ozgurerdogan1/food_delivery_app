@@ -8,24 +8,28 @@ class SmallText extends StatelessWidget {
   final Color? color;
   final String text;
   final double? size;
-  final double? height = 1.2.h;
+  final double? height;
+  final TextAlign? textAlign;
 
-  SmallText(
+  const SmallText(
     this.text, {
     super.key,
     this.size = 0,
     this.color = AppColors.textColor,
+    this.textAlign,
+    this.height,
   });
 
   @override
   Widget build(BuildContext context) {
     return Text(text,
+        textAlign: textAlign,
         style: GoogleFonts.roboto(
           textStyle: TextStyle(
             fontSize: size == 0 ? Dimensions.smallTextHeight : size,
             color: color,
             fontWeight: FontWeight.w400,
-            height: height,
+            height: height ?? 1.2.h,
           ),
         ));
   }

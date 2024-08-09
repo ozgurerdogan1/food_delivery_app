@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/route_manager.dart';
-import 'package:get/utils.dart';
 
 class Dimensions {
   // static double screenHeight = Get.context!.height;
@@ -19,12 +17,17 @@ class Dimensions {
   static double height15 = 15.h;
   static double height20 = 20.h;
   static double height30 = 30.h;
+  static double height40 = 40.h;
   static double height45 = 45.h;
 
   static double radius5 = 5.r;
   static double radius15 = 15.r;
   static double radius20 = 20.r;
   static double radius30 = 30.r;
+
+  static double font14 = 14.h;
+  static double font20 = 20.h;
+  static double font26 = 26.h;
 
   static double smallTextHeight = 12.h;
   static double bigTextHeight = 20.h;
@@ -33,7 +36,14 @@ class Dimensions {
   static Size dotsSize = Size.square(11.0.h);
 
   static double iconSize24 = 24.h;
+  static double iconSize16 = 16.h;
 
   static double listViewImgSize = 120.h;
   static double listViewTextContSize = 100.h;
+
+  static double popularFoodImgSize = 350.h;
+
+  static double bottomHeightBar = 120.h;
+
+  static double expandableTextHeight = 365.h;
 }

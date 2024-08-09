@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_delivery_app/pages/home/main_food_page.dart';
+import 'package:food_delivery_app/pages/food/popular_food_detail.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 void main() => runApp(const MyApp());
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: MainFoodPage(),
+      child: const PopularFoodDetail(),
     );
   }
 }
