@@ -6,17 +6,17 @@ import 'package:google_fonts/google_fonts.dart';
 
 // ignore: must_be_immutable
 class BigText extends StatelessWidget {
-  BigText(
+  const BigText(
     this.text, {
     super.key,
-    this.size = 0,
+    this.size,
     this.color = AppColors.mainBlackColor,
     this.textOverFlow = TextOverflow.ellipsis,
   });
 
   final Color? color;
   final String text;
-  double? size;
+  final double? size;
   final TextOverflow textOverFlow;
 
   @override
@@ -26,7 +26,7 @@ class BigText extends StatelessWidget {
         overflow: textOverFlow,
         style: GoogleFonts.roboto(
           textStyle: TextStyle(
-            fontSize: size == 0 ? Dimensions.bigTextHeight : size,
+            fontSize: size ?? Dimensions.bigTextHeight,
             color: color,
             fontWeight: FontWeight.w400,
           ),

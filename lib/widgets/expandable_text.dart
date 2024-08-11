@@ -8,17 +8,17 @@ import 'package:food_delivery_app/widgets/small_text.dart';
 
 class ExpandableTextWidget extends StatefulWidget {
   final String text;
-  final TextAlign? textAlign;
+  final TextAlign textAlign;
   final double textSize;
   final Color color;
   final double height;
   const ExpandableTextWidget(
       {Key? key,
       required this.text,
-      this.textAlign,
       required this.textSize,
-      required this.color,
-      required this.height})
+      this.color = AppColors.paraColor,
+      required this.height,
+      this.textAlign = TextAlign.justify})
       : super(key: key);
 
   @override
@@ -47,6 +47,7 @@ class _ExpandableTextWidgetState extends State<ExpandableTextWidget> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("textAlign ${widget.textAlign}");
     return Container(
       child: secondHalf.isEmpty
           ? SmallText(
