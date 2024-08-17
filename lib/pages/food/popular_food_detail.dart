@@ -65,7 +65,7 @@ class PopularFoodDetail extends StatelessWidget {
                     const AppColumn(
                         mainAxisAlignment: MainAxisAlignment.start, text: "Baklava Spacial"),
                     SizedBox(height: Dimensions.height20),
-                    BigText("Introduce"),
+                    const BigText("Introduce"),
                     SizedBox(height: Dimensions.height10),
                     Expanded(
                       child: Scrollbar(
@@ -116,7 +116,7 @@ class PopularFoodDetail extends StatelessWidget {
                   children: [
                     const Icon(Icons.remove, color: AppColors.signColor),
                     SizedBox(width: Dimensions.height10),
-                    BigText("0"),
+                    const BigText("0"),
                     SizedBox(width: Dimensions.height10),
                     const Icon(Icons.add, color: AppColors.signColor)
                   ],

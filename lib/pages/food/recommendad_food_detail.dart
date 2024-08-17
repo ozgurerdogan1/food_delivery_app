@@ -6,7 +6,7 @@ import 'package:food_delivery_app/utils/dimensions.dart';
 import 'package:food_delivery_app/widgets/app_icon.dart';
 import 'package:food_delivery_app/widgets/big_text.dart.dart';
 import 'package:food_delivery_app/widgets/expandable_text.dart';
-import 'package:food_delivery_app/widgets/small_text.dart';
+
 
 class RecommendedFoodDetail extends StatelessWidget {
   final String imagePath;
@@ -21,13 +21,13 @@ class RecommendedFoodDetail extends StatelessWidget {
         builder: (BuildContext context, AsyncSnapshot<Color> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             // Verinin yüklenmesini beklerken gösterilecek widget
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             // Veri yüklenirken bir hata oluşursa gösterilecek widget
             return Center(child: Text('Hata: ${snapshot.error}'));
           } else if (!snapshot.hasData) {
             // Veri mevcut değilse gösterilecek widget
-            return Center(child: Text('Veri Yok'));
+            return const Center(child: Text('Veri Yok'));
           } else {
             // Veri başarıyla yüklendiğinde gösterilecek widget
             return CustomScrollView(
@@ -48,11 +48,11 @@ class RecommendedFoodDetail extends StatelessWidget {
                     background: Image.asset(imagePath, fit: BoxFit.cover),
                   ),
                   bottom: PreferredSize(
-                      preferredSize: Size.fromHeight(20),
+                      preferredSize: const Size.fromHeight(20),
                       child: Container(
                         alignment: Alignment.center,
                         width: double.maxFinite,
-                        padding: EdgeInsets.only(top: 5, bottom: 10),
+                        padding: const EdgeInsets.only(top: 5, bottom: 10),
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.only(

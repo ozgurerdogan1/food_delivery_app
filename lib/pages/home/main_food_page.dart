@@ -27,7 +27,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
+                const Column(
                   children: [
                     BigText(
                       "Türkiye",
@@ -39,7 +39,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                         SmallText(
                           "Sakarya",
                         ),
-                        const Icon(Icons.arrow_drop_down_rounded)
+                        Icon(Icons.arrow_drop_down_rounded)
                       ],
                     )
                   ],

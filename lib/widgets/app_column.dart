@@ -37,11 +37,11 @@ class AppColumn extends StatelessWidget {
                       )),
             ),
             SizedBox(width: Dimensions.height10),
-            SmallText("4.5"),
+            const SmallText("4.5"),
             SizedBox(width: Dimensions.height10),
-            SmallText("1287"),
+            const SmallText("1287"),
             SizedBox(width: Dimensions.height10),
-            SmallText("comments")
+            const SmallText("comments")
           ],
         ),
         SizedBox(height: Dimensions.height20),

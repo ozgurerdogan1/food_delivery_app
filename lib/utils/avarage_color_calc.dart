@@ -42,6 +42,7 @@ class AvarageColor {
       int bf = blue ~/ count;
       return Color.fromRGBO(rf, gf, bf, 1);
     } on Exception catch (e) {
+      debugPrint("avarage error: $e");
       return Colors.black;
     }
   }
