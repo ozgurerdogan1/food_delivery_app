@@ -1,88 +1,77 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_delivery_app/utils/app_constants.dart';
 import 'package:food_delivery_app/utils/avarage_color_calc.dart';
 import 'package:food_delivery_app/utils/colors.dart';
 import 'package:food_delivery_app/utils/dimensions.dart';
 import 'package:food_delivery_app/widgets/app_icon.dart';
 import 'package:food_delivery_app/widgets/big_text.dart.dart';
 import 'package:food_delivery_app/widgets/expandable_text.dart';
-
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
-  final String imagePath;
-  const RecommendedFoodDetail({super.key, required this.imagePath});
+  const RecommendedFoodDetail({super.key});
 
   @override
   Widget build(BuildContext context) {
+    String imageUrl = Get.parameters['imageUrl'] ?? '';
+    imageUrl = AppConstants.BASE_URL + AppConstants.UPLOADS_URL + imageUrl;
     return Scaffold(
       backgroundColor: Colors.white,
-      body: FutureBuilder<Color>(
-        future: AvarageColor.instance.getAvarageColor(imagePath), // Asenkron veri yükleme işlemi
-        builder: (BuildContext context, AsyncSnapshot<Color> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            // Verinin yüklenmesini beklerken gösterilecek widget
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            // Veri yüklenirken bir hata oluşursa gösterilecek widget
-            return Center(child: Text('Hata: ${snapshot.error}'));
-          } else if (!snapshot.hasData) {
-            // Veri mevcut değilse gösterilecek widget
-            return const Center(child: Text('Veri Yok'));
-          } else {
-            // Veri başarıyla yüklendiğinde gösterilecek widget
-            return CustomScrollView(
-              slivers: [
-                SliverAppBar(
-                  toolbarHeight: 80,
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      AppIcon(icon: Icons.clear),
-                      AppIcon(icon: Icons.shopping_cart_outlined),
-                    ],
-                  ),
-                  pinned: true,
-                  backgroundColor: snapshot.data,
-                  expandedHeight: 300,
-                  flexibleSpace: FlexibleSpaceBar(
-                    background: Image.asset(imagePath, fit: BoxFit.cover),
-                  ),
-                  bottom: PreferredSize(
-                      preferredSize: const Size.fromHeight(20),
-                      child: Container(
-                        alignment: Alignment.center,
-                        width: double.maxFinite,
-                        padding: const EdgeInsets.only(top: 5, bottom: 10),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(Dimensions.height20),
-                              topRight: Radius.circular(Dimensions.height20),
-                            )),
-                        child: BigText(
-                          "Dondurmalı Ekmek Kadayıfı",
-                          size: Dimensions.font26,
-                        ),
-                      )),
-                ),
-                SliverToBoxAdapter(
-                  child: Container(
-                    padding: EdgeInsets.only(
-                      left: Dimensions.height10,
-                      right: Dimensions.height10,
-                    ),
-                    child: ExpandableTextWidget(
-                      text:
-                          "Teknoloji hızla gelişiyor ve günlük yaşamımızda büyük değişiklikler yaratıyor. Bilgisayarlar, akıllı telefonlar ve diğer dijital cihazlar hayatımızın ayrılmaz bir parçası haline geldi. Bu cihazlar, bilgiye erişimimizi kolaylaştırıyor ve iletişimimizi daha hızlı ve etkili hale getiriyor. Ancak, teknolojinin bu hızlı ilerlemesi, güvenlik ve gizlilik endişelerini de beraberinde getiriyor. Bu nedenle, teknolojiyi kullanırken dikkatli olmak ve kişisel verilerimizi korumak önemlidir. Ayrıca, teknolojiye uyum sağlamak ve sürekli öğrenmek, bu değişimlerin getirdiği fırsatları en iyi şekilde değerlendirmek için gereklidir. Teknoloji hızla gelişiyor ve günlük yaşamımızda büyük değişiklikler yaratıyor. Bilgisayarlar, akıllı telefonlar ve diğer dijital cihazlar hayatımızın ayrılmaz bir parçası haline geldi. Bu cihazlar, bilgiye erişimimizi kolaylaştırıyor ve iletişimimizi daha hızlı ve etkili hale getiriyor. Ancak, teknolojinin bu hızlı ilerlemesi, güvenlik ve gizlilik endişelerini de beraberinde getiriyor. Bu nedenle, teknolojiyi kullanırken dikkatli olmak ve kişisel verilerimizi korumak önemlidir. Ayrıca, teknolojiye uyum sağlamak ve sürekli öğrenmek, bu değişimlerin getirdiği fırsatları en iyi şekilde değerlendirmek için gereklidir. Teknoloji hızla gelişiyor ve günlük yaşamımızda büyük değişiklikler yaratıyor. Bilgisayarlar, akıllı telefonlar ve diğer dijital cihazlar hayatımızın ayrılmaz bir parçası haline geldi. Bu cihazlar, bilgiye erişimimizi kolaylaştırıyor ve iletişimimizi daha hızlı ve etkili hale getiriyor. Ancak, teknolojinin bu hızlı ilerlemesi, güvenlik ve gizlilik endişelerini de beraberinde getiriyor. Bu nedenle, teknolojiyi kullanırken dikkatli olmak ve kişisel verilerimizi korumak önemlidir. Ayrıca, teknolojiye uyum sağlamak ve sürekli öğrenmek, bu değişimlerin getirdiği fırsatları en iyi şekilde değerlendirmek için gereklidir. Teknoloji hızla gelişiyor ve günlük yaşamımızda büyük değişiklikler yaratıyor. Bilgisayarlar, akıllı telefonlar ve diğer dijital cihazlar hayatımızın ayrılmaz bir parçası haline geldi. Bu cihazlar, bilgiye erişimimizi kolaylaştırıyor ve iletişimimizi daha hızlı ve etkili hale getiriyor. Ancak, teknolojinin bu hızlı ilerlemesi, güvenlik ve gizlilik endişelerini de beraberinde getiriyor. Bu nedenle, teknolojiyi kullanırken dikkatli olmak ve kişisel verilerimizi korumak önemlidir. Ayrıca, teknolojiye uyum sağlamak ve sürekli öğrenmek, bu değişimlerin getirdiği fırsatları en iyi şekilde değerlendirmek için gereklidir.",
-                      textSize: Dimensions.font14,
-                      height: 1.5.h,
-                    ),
-                  ),
-                ),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            automaticallyImplyLeading: false,
+            toolbarHeight: 80,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(onTap: () => Get.back(), child: AppIcon(icon: Icons.clear)),
+                AppIcon(icon: Icons.shopping_cart_outlined),
               ],
-            );
-          }
-        },
+            ),
+            pinned: true,
+            expandedHeight: 300,
+            backgroundColor: AppColors.mainColor,
+            flexibleSpace: FlexibleSpaceBar(
+              background: imageUrl.isEmpty
+                  ? const BigText("Resim bulunamadı")
+                  : Image.network(imageUrl, fit: BoxFit.cover),
+            ),
+            bottom: PreferredSize(
+                preferredSize: const Size.fromHeight(20),
+                child: Container(
+                  alignment: Alignment.center,
+                  width: double.maxFinite,
+                  padding: const EdgeInsets.only(top: 5, bottom: 10),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(Dimensions.height20),
+                        topRight: Radius.circular(Dimensions.height20),
+                      )),
+                  child: BigText(
+                    "Dondurmalı Ekmek Kadayıfı",
+                    size: Dimensions.font26,
+                  ),
+                )),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              padding: EdgeInsets.only(
+                left: Dimensions.height10,
+                right: Dimensions.height10,
+              ),
+              child: ExpandableTextWidget(
+                text:
+                    "Teknoloji hızla gelişiyor ve günlük yaşamımızda büyük değişiklikler yaratıyor. Bilgisayarlar, akıllı telefonlar ve diğer dijital cihazlar hayatımızın ayrılmaz bir parçası haline geldi. Bu cihazlar, bilgiye erişimimizi kolaylaştırıyor ve iletişimimizi daha hızlı ve etkili hale getiriyor. Ancak, teknolojinin bu hızlı ilerlemesi, güvenlik ve gizlilik endişelerini de beraberinde getiriyor. Bu nedenle, teknolojiyi kullanırken dikkatli olmak ve kişisel verilerimizi korumak önemlidir. Ayrıca, teknolojiye uyum sağlamak ve sürekli öğrenmek, bu değişimlerin getirdiği fırsatları en iyi şekilde değerlendirmek için gereklidir. Teknoloji hızla gelişiyor ve günlük yaşamımızda büyük değişiklikler yaratıyor. Bilgisayarlar, akıllı telefonlar ve diğer dijital cihazlar hayatımızın ayrılmaz bir parçası haline geldi. Bu cihazlar, bilgiye erişimimizi kolaylaştırıyor ve iletişimimizi daha hızlı ve etkili hale getiriyor. Ancak, teknolojinin bu hızlı ilerlemesi, güvenlik ve gizlilik endişelerini de beraberinde getiriyor. Bu nedenle, teknolojiyi kullanırken dikkatli olmak ve kişisel verilerimizi korumak önemlidir. Ayrıca, teknolojiye uyum sağlamak ve sürekli öğrenmek, bu değişimlerin getirdiği fırsatları en iyi şekilde değerlendirmek için gereklidir. Teknoloji hızla gelişiyor ve günlük yaşamımızda büyük değişiklikler yaratıyor. Bilgisayarlar, akıllı telefonlar ve diğer dijital cihazlar hayatımızın ayrılmaz bir parçası haline geldi. Bu cihazlar, bilgiye erişimimizi kolaylaştırıyor ve iletişimimizi daha hızlı ve etkili hale getiriyor. Ancak, teknolojinin bu hızlı ilerlemesi, güvenlik ve gizlilik endişelerini de beraberinde getiriyor. Bu nedenle, teknolojiyi kullanırken dikkatli olmak ve kişisel verilerimizi korumak önemlidir. Ayrıca, teknolojiye uyum sağlamak ve sürekli öğrenmek, bu değişimlerin getirdiği fırsatları en iyi şekilde değerlendirmek için gereklidir. Teknoloji hızla gelişiyor ve günlük yaşamımızda büyük değişiklikler yaratıyor. Bilgisayarlar, akıllı telefonlar ve diğer dijital cihazlar hayatımızın ayrılmaz bir parçası haline geldi. Bu cihazlar, bilgiye erişimimizi kolaylaştırıyor ve iletişimimizi daha hızlı ve etkili hale getiriyor. Ancak, teknolojinin bu hızlı ilerlemesi, güvenlik ve gizlilik endişelerini de beraberinde getiriyor. Bu nedenle, teknolojiyi kullanırken dikkatli olmak ve kişisel verilerimizi korumak önemlidir. Ayrıca, teknolojiye uyum sağlamak ve sürekli öğrenmek, bu değişimlerin getirdiği fırsatları en iyi şekilde değerlendirmek için gereklidir.",
+                textSize: Dimensions.font14,
+                height: 1.5.h,
+              ),
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: Column(mainAxisSize: MainAxisSize.min, children: [
         Container(

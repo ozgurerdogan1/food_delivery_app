@@ -1,8 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:image/image.dart' as img;
+import 'package:get/get_connect/connect.dart';
+import 'dart:ui' as ui;
+import 'package:http/http.dart' as http;
+import 'package:palette_generator/palette_generator.dart';
 
-class AvarageColor {
+class AvarageColor extends GetConnect {
   AvarageColor._();
   static AvarageColor? _instance;
 
@@ -10,40 +15,23 @@ class AvarageColor {
     return _instance ??= AvarageColor._();
   }
 
-  Future<Color> getAvarageColor(String imagePath) async {
-    //img.Image? image = img.decodeImage(File(imagePath).readAsBytesSync());
-    // Asset'tan resmi yükle
-    try {
-      final ByteData? data = await rootBundle.load(imagePath);
-      final Uint8List? bytes = data?.buffer.asUint8List();
+  Future<Color> getAvarageColor(String imageUrl) async {
+    // Resmi indirin ve ByteData olarak alın
+    final response = await http.get(Uri.parse(imageUrl));
+    final Uint8List bytes = response.bodyBytes;
+    final ui.Image image = await _loadImage(Uint8List.view(bytes.buffer));
 
-      if (bytes == null) return Colors.white;
+    // Palet oluşturucu ile baskın renkleri al
+    final paletteGenerator = await PaletteGenerator.fromImage(image);
 
-      // Resmi decode et
-      final img.Image? image = img.decodeImage(Uint8List.fromList(bytes));
+    return paletteGenerator.dominantColor?.color ?? Colors.black;
+  }
 
-      if (image == null) return Colors.white;
-
-      double red = 0;
-      double green = 0;
-      double blue = 0;
-      double count = 0;
-      for (int x = 0; x < image.width; x++) {
-        for (int y = 0; y < image.height; y++) {
-          img.Pixel pixel = image.getPixel(x, y);
-          red = red + pixel.r;
-          green = green + pixel.g;
-          blue = blue + pixel.b;
-          count = count + 1;
-        }
-      }
-      int rf = red ~/ count;
-      int gf = green ~/ count;
-      int bf = blue ~/ count;
-      return Color.fromRGBO(rf, gf, bf, 1);
-    } on Exception catch (e) {
-      debugPrint("avarage error: $e");
-      return Colors.black;
-    }
+  Future<ui.Image> _loadImage(Uint8List img) async {
+    final Completer<ui.Image> completer = Completer();
+    ui.decodeImageFromList(img, (ui.Image img) {
+      return completer.complete(img);
+    });
+    return completer.future;
   }
 }

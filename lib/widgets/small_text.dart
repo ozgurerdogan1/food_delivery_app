@@ -10,6 +10,8 @@ class SmallText extends StatelessWidget {
   final double? size;
   final double? height;
   final TextAlign? textAlign;
+  final TextOverflow? textOverFlow;
+  final int? maxLines;
 
   const SmallText(
     this.text, {
@@ -18,12 +20,16 @@ class SmallText extends StatelessWidget {
     this.color = AppColors.textColor,
     this.textAlign,
     this.height,
+    this.textOverFlow,
+    this.maxLines
   });
 
   @override
   Widget build(BuildContext context) {
     return Text(text,
         textAlign: textAlign,
+        overflow: textOverFlow,
+        maxLines: maxLines,
         style: GoogleFonts.roboto(
           textStyle: TextStyle(
             fontSize: size == 0 ? Dimensions.smallTextHeight : size,
