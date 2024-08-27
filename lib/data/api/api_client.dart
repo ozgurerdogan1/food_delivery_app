@@ -1,4 +1,3 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:food_delivery_app/utils/app_constants.dart';
 import 'package:get/get.dart';
@@ -19,9 +18,8 @@ class ApiClient extends GetConnect implements GetxService {
 
   Future<Response> getData(String uri) async {
     try {
-      debugPrint("api_client 1");
-      Response response = await get(uri,headers: _mainHeaders);
-      debugPrint("api_client 2");
+      Response response = await get(uri, headers: _mainHeaders);
+
       return response;
     } on Exception catch (e) {
       debugPrint("error: $e");

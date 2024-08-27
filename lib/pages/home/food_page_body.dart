@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_app/controllers/popular_product_controller.dart';
 import 'package:food_delivery_app/controllers/recommended_product_controller.dart';
 import 'package:food_delivery_app/models/products_model.dart';
-import 'package:food_delivery_app/pages/food/popular_food_detail.dart';
 import 'package:food_delivery_app/routes/route_helper.dart';
 import 'package:food_delivery_app/utils/app_constants.dart';
 import 'package:food_delivery_app/utils/colors.dart';
@@ -14,7 +13,6 @@ import 'package:food_delivery_app/widgets/icon_and_text_widget.dart';
 import 'package:food_delivery_app/widgets/small_text.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 class FoodPageBody extends StatefulWidget {
   const FoodPageBody({super.key});
@@ -62,29 +60,28 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         GetBuilder<PopularProductController>(
             init: PopularProductController(popularProductRepo: Get.find()),
             builder: (popularProducts) {
-              debugPrint("get builder running");
               late ProductModel popularProduct;
               return !popularProducts.isLoaded
                   ? const CircularProgressIndicator(
                       color: AppColors.mainColor,
                     )
                   : Container(
-                    height: Dimensions.pageView,
-                    width: double.infinity,
-                    alignment: Alignment.center,
-                    child: PageView.builder(
-                      controller: _pageController,
-                      itemCount: popularProducts.popularProductList.length,
-                      itemBuilder: (context, index) {
-                        popularProduct = popularProducts.popularProductList[index];
-                        return _buildPageItem(
-                          context,
-                          index,
-                          popularProduct,
-                        );
-                      },
-                    ),
-                  );
+                      height: Dimensions.pageView,
+                      width: double.infinity,
+                      alignment: Alignment.center,
+                      child: PageView.builder(
+                        controller: _pageController,
+                        itemCount: popularProducts.popularProductList.length,
+                        itemBuilder: (context, index) {
+                          popularProduct = popularProducts.popularProductList[index];
+                          return _buildPageItem(
+                            context,
+                            index,
+                            popularProduct,
+                          );
+                        },
+                      ),
+                    );
             }),
         // dots indicator
         GetBuilder<PopularProductController>(builder: (popularProducts) {
@@ -143,9 +140,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
                       return GestureDetector(
                         onTap: () {
-                          Get.toNamed(RouteHelper.recommendedFood, parameters: {
-                            "imageUrl": recommendedProducts.recommendedProductList[index].img ?? ""
-                          });
+                          Get.toNamed(RouteHelper.getRecommendedFood(index));
                         },
                         child: Container(
                           margin: EdgeInsets.only(bottom: Dimensions.height10),
@@ -264,7 +259,6 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
       matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currHeight, 0);
     } else {
-      debugPrint("else");
       double currHeight = currHeightCalc(index, _currentPageValue, _scaleFactor, containerHeight);
       double currScale = _scaleFactor - (1 - scaleRatioY);
       matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currHeight, 0);
@@ -275,7 +269,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       child: Stack(
         children: [
           GestureDetector(
-            onTap: () => Get.toNamed(RouteHelper.getPopularFood()),
+            onTap: () => Get.toNamed(
+              RouteHelper.getPopularFood(index),
+            ),
             child: Container(
               height: containerHeight,
               margin: EdgeInsets.symmetric(horizontal: Dimensions.height10),

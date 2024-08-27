@@ -15,8 +15,6 @@ class MainFoodPage extends StatefulWidget {
 class _MainFoodPageState extends State<MainFoodPage> {
   @override
   Widget build(BuildContext context) {
-    debugPrint("current height is : ${MediaQuery.of(context).size.height}");
-    debugPrint("current width is : ${MediaQuery.of(context).size.width}");
     return Scaffold(
       body: Column(
         children: [
@@ -44,18 +42,38 @@ class _MainFoodPageState extends State<MainFoodPage> {
                     )
                   ],
                 ),
-                Container(
-                  height: Dimensions.height45,
-                  width: Dimensions.height45,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(Dimensions.radius15),
-                    color: AppColors.mainColor,
-                  ),
-                  child: Icon(
-                    Icons.search,
-                    color: Colors.white,
-                    size: Dimensions.iconSize24,
-                  ),
+                Row(
+                  children: [
+                    Container(
+                      height: Dimensions.height45,
+                      width: Dimensions.height45,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(Dimensions.radius15),
+                        color: AppColors.mainColor,
+                      ),
+                      child: Icon(
+                        Icons.search,
+                        color: Colors.white,
+                        size: Dimensions.iconSize24,
+                      ),
+                    ),
+                    SizedBox(
+                      width: Dimensions.height10,
+                    ),
+                    Container(
+                      height: Dimensions.height45,
+                      width: Dimensions.height45,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(Dimensions.radius15),
+                        color: AppColors.mainColor,
+                      ),
+                      child: Icon(
+                        Icons.shopping_cart,
+                        color: Colors.white,
+                        size: Dimensions.iconSize24,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

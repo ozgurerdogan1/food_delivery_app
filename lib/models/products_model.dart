@@ -69,6 +69,7 @@ class ProductModel {
     typeId = json['type_id'];
   }
 
+
   @override
   String toString() {
     return 'ProductModel(id: $id, name: $name, description: $description, price: $price, stars: $stars, img: $img, location: $location, createdAt: $createdAt, updatedAt: $updatedAt, typeId: $typeId)';

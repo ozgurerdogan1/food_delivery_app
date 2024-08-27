@@ -47,7 +47,7 @@ class _ExpandableTextWidgetState extends State<ExpandableTextWidget> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("textAlign ${widget.textAlign}");
+   
     return Container(
       child: secondHalf.isEmpty
           ? SmallText(
